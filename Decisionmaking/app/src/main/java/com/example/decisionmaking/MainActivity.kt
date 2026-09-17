@@ -21,7 +21,8 @@ class MainActivity : ComponentActivity() {
             DecisionMakingTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     DecisionScreen(
-                        choices = listOf("Yes", "Not sure", "No"),
+                        choices = listOf("Sure!", "Not sure", "No"),
+                        question = "Do we wanna go out?",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
