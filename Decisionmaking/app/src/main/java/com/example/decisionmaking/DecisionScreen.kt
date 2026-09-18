@@ -1,7 +1,9 @@
 package com.example.decisionmaking
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -28,6 +30,14 @@ fun DecisionScreen(
 ) {
     var selectedChoice by remember { mutableStateOf<Int?>(null) }
     var decisionResult by remember { mutableStateOf<String?>(null)}
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Bottom),
+        horizontalAlignment = Alignment.Start
+    ) {
+        Text("1854423 ldipasup")
+    }
 
     LazyColumn(
         modifier = modifier.fillMaxSize(),
@@ -79,7 +89,9 @@ fun DecisionScreen(
                 }
             }
 
+
     }
+
 }
 
 
