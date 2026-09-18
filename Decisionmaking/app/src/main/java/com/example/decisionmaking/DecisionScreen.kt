@@ -31,6 +31,7 @@ fun DecisionScreen(
     var selectedChoice by remember { mutableStateOf<Int?>(null) }
     var decisionResult by remember { mutableStateOf<String?>(null)}
 
+    // Display the student ID
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Bottom),
@@ -39,6 +40,7 @@ fun DecisionScreen(
         Text("1854423 ldipasup")
     }
 
+    // Display the question and choices
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
@@ -48,10 +50,11 @@ fun DecisionScreen(
         item {
             Text(question)
         }
-        itemsIndexed(choices) { index, choice ->
+        itemsIndexed(choices) { index, choice -> // Goes through the choices
             val isSelected = selectedChoice == index
             Button(
                 onClick = {
+                    // Update the selected choice and decision result
                     selectedChoice = index
                     val roll = Random.nextInt(1,101)
                     val chanceOfYes = when (index) {
@@ -66,6 +69,7 @@ fun DecisionScreen(
                         decisionResult = "nah bro"
                     }
                 },
+                // Set the button color and content color based on the selected state
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (isSelected) {
@@ -83,6 +87,7 @@ fun DecisionScreen(
                 Text(choice)
             }
         }
+        // Display the decision result
         if(selectedChoice != null && decisionResult != null){
             item{
                 Text(decisionResult!!)
