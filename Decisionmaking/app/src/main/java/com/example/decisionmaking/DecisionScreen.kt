@@ -16,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlin.random.Random
 
 @Composable
 fun DecisionScreen(
@@ -24,6 +25,7 @@ fun DecisionScreen(
     modifier: Modifier = Modifier
 ) {
     var selectedChoice by remember { mutableStateOf<Int?>(null) }
+    var decisionResult by remember { mutableStateOf<String?>(null)}
 
     LazyColumn(
         modifier = modifier.fillMaxSize(),
@@ -38,24 +40,30 @@ fun DecisionScreen(
             Button(
                 onClick = {
                     selectedChoice = index
+                    val roll = Random.nextInt(1,101)
+                    val chanceOfYes = when (index) {
+                        0 -> 90
+                        1 -> 50
+                        2 -> 10
+                        else -> 0
+                    }
+                    if (roll <= chanceOfYes){
+                        decisionResult = "Yea let's go!"
+                    } else {
+                        decisionResult = "nah bro"
+                    }
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(choice)
             }
         }
-        if (selectedChoice != null) {
-            item {
-                if (selectedChoice == 0) {
-                    Text("Sure letsgo")
-
-                } else if (selectedChoice == 1) {
-                    Text("Not sure")
-                } else {
-                    Text("No")
+        if(selectedChoice != null && decisionResult != null){
+            item{
+                Text(decisionResult!!)
                 }
             }
-        }
+
     }
 }
 
